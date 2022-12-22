@@ -1,0 +1,26 @@
+version: '3.3'
+services: 
+    postgres:
+      image: postgres:13.1
+      healthcheck:
+        timeout: 45s
+        interval: 10s
+      restart: always
+      environment:
+        - POSTGRES_USER=admin
+        - POSTGRES_PASSWORD=password
+        - APP_DB_USER=docker
+        - APP_DB_PASS=docker
+        - APP_DB_NAME=docker
+      ports:
+        - 5432:5432 
+    chainlink-node:
+      restart: always
+      image: "smartcontract/chainlink:1.6.0-root"
+      ports:
+        - "6688:6688"
+      volumes:
+        - ~/.chainlink:/chainlink
+      env_file:
+        - ~/.chainlink/.env
+      command: local n -p /chainlink/.password -a /chainlink/.api

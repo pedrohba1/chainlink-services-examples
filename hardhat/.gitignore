@@ -1,0 +1,15 @@
+node_modules
+.env
+coverage
+coverage.json
+typechain
+
+
+scripts/revert_virtual/users_and_wallets.ts
+scripts/staking/stake_many/wallets.ts
+
+#Hardhat files
+cache
+artifacts
+types
+
